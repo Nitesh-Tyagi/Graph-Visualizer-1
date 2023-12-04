@@ -4,7 +4,7 @@ const svgWidth = 1200; // SVG width
 const svgHeight = 600; // SVG height
 
 let circles = svg.querySelectorAll('.circle:not(#main)');
-const minDist = 40;
+const minDist = 50;
 let mainDist = 60;
 const radius = 18.5;
 
