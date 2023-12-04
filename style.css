@@ -1,0 +1,31 @@
+body {
+    margin: 0px;
+	padding: 0px;
+    background-color: rgb(59, 59, 59);
+
+    position: relative;
+}
+
+.circle {
+    transition: cx 1s ease-out, cy 1s ease-out;
+}
+
+#svg {
+    height: 600px;
+    width: 1200px;
+
+    /* left: 50%; */
+    /* transform: translate(50%, 10%); */
+    position: absolute;
+
+    border: solid 5px rgb(38, 38, 38);
+}
+
+#add {
+    height: 40px;
+    width: 80px;
+    position: fixed;
+    
+    top: 38%;
+    right: 10%;
+}
