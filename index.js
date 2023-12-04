@@ -4,7 +4,7 @@ const svgWidth = 1200; // SVG width
 const svgHeight = 600; // SVG height
 
 let circles = svg.querySelectorAll('.circle:not(#main)');
-const minDist = 60;
+const minDist = 40;
 let mainDist = 60;
 const radius = 18.5;
 
@@ -49,6 +49,15 @@ function sortCirclesByDistance() {
 
 let currentCircleIndex = 0; // Index to keep track of the current circle to update
 
+// function updateCircles() {
+//     sortCirclesByDistance(); // Sort circles based on their distance from the main circle
+//     circles.forEach(circle => {
+//         adjustPositionBasedOnMain(circle, main);
+//         adjustCirclesAmongThemselves();
+//         constrainWithinBounds(circle);
+//     });
+// }
+
 function updateCircles() {
     if (circles.length === 0) {
         return;
@@ -64,6 +73,7 @@ function updateCircles() {
     currentCircleIndex++; // Move to the next circle
     
 }
+
 function adjustPositionBasedOnMain(circle, mainCircle) {
     let dx = parseInt(circle.getAttribute('cx')) - parseInt(mainCircle.getAttribute('cx'));
     let dy = parseInt(circle.getAttribute('cy')) - parseInt(mainCircle.getAttribute('cy'));
