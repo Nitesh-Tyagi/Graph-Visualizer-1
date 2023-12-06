@@ -1,31 +1,121 @@
 body {
     margin: 0px;
-	padding: 0px;
+    padding: 0px;
     background-color: rgb(59, 59, 59);
-
     position: relative;
-}
-
-.circle {
-    transition: cx 1s ease-out, cy 1s ease-out;
 }
 
 #svg {
     height: 600px;
     width: 1200px;
-
-    /* left: 50%; */
-    /* transform: translate(50%, 10%); */
     position: absolute;
-
     border: solid 5px rgb(38, 38, 38);
 }
 
-#add {
-    height: 40px;
-    width: 80px;
-    position: fixed;
+.circle {
+    transition: all 0.3s ease-out; /* Smooth transition for the circles */
+}
+
+#main {
+    fill: #ee1911; /* Keeping the main circle red */
+    stroke: #0C0C0C;
+    stroke-width: 3px;
+    cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+/* Styling for other circles */
+.circle:not(#main) {
+    fill: rgb(150, 150, 150); /* Grey fill for other circles */
+    stroke: rgb(60, 60, 60); /* Darker stroke for contrast */
+    stroke-width: 3px;
     
-    top: 38%;
-    right: 10%;
+}
+
+.circle:not(#main):hover {
+    fill: rgb(180, 180, 180); /* Lighter fill on hover for interactive feel */
+}
+
+#container {
+    height: 240px;
+    width: 240px;
+    background-color: rgb(117, 117, 117);
+    position: fixed;
+    top: 28%;
+    right: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#slider {
+    width: 80%; /* Adjusting the width to fit inside the container */
+    cursor: pointer; /* Adding a pointer cursor on hover */
+    background-color: rgb(90, 90, 90); /* A darker shade for the slider */
+    border-radius: 5px; /* Rounded edges for the slider */
+    -webkit-appearance: none; /* Removes default styling */
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background-color: rgb(150, 150, 150); /* A lighter shade for the thumb */
+    cursor: pointer; /* Ensuring the cursor is a pointer */
+    border-radius: 50%; /* Making the thumb circular */
+}
+
+label {
+    color: rgb(34, 34, 34); /* A light grey color for text */
+    font-family: Arial, sans-serif; /* A clean, modern font */
+    font-size: 14px; /* Adjusting the font size */
+}
+
+#value {
+    color: rgb(200, 200, 200); /* A light grey color for text */
+    font-family: Arial, sans-serif; /* A clean, modern font */
+    font-size: 14px; /* Adjusting the font size */
+}
+
+#speedSlider {
+    width: 80%; /* Adjusting the width to fit inside the container */
+    cursor: pointer; /* Adding a pointer cursor on hover */
+    background-color: rgb(90, 90, 90); /* A darker shade for the slider */
+    border-radius: 5px; /* Rounded edges for the slider */
+    -webkit-appearance: none; /* Removes default styling */
+}
+
+#speedSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background-color: rgb(150, 150, 150); /* A lighter shade for the thumb */
+    cursor: pointer; /* Ensuring the cursor is a pointer */
+    border-radius: 50%; /* Making the thumb circular */
+}
+
+#speed {
+    color: rgb(200, 200, 200); /* A light grey color for text */
+    font-family: Arial, sans-serif; /* A clean, modern font */
+    font-size: 14px; /* Adjusting the font size */
+}
+
+#add {
+    padding: 6px 12px; /* Padding for the button */
+    background-color: rgb(100, 100, 100); /* Matching grey shade for the button */
+    color: white; /* White color for the button text */
+    border: none; /* Removing the border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: Arial, sans-serif; /* Consistent font */
+    font-size: 14px; /* Matching font size */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#add:hover {
+    background-color: rgb(130, 130, 130); /* Slightly lighter shade on hover */
 }

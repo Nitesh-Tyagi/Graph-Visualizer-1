@@ -4,13 +4,33 @@ const svgWidth = 1200; // SVG width
 const svgHeight = 600; // SVG height
 
 let circles = svg.querySelectorAll('.circle:not(#main)');
-const minDist = 40;
+let minDist = 50;
 let mainDist = 60;
+let speed = -1.10000000000020;
 const radius = 18.5;
 
 let isDragging = false;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
+
+let slider = document.getElementById("slider");
+let value = document.getElementById("value");
+value.innerText = slider.value;
+
+slider.oninput = function () {
+    value.innerText = this.value;
+    minDist = Number(this.value);
+}
+
+let speedSlider = document.getElementById("speedSlider");
+let speedValue = document.getElementById("speed");
+speedValue.innerText = speedSlider.value;
+
+speedSlider.oninput = function () {
+    speedValue.innerText = this.value;
+    speed = -1.10000000000020 * Number(this.value);
+}
+
 
 main.addEventListener('mousedown', function(e) {
     isDragging = true;
@@ -75,42 +95,41 @@ function updateCircles() {
 }
 
 function adjustPositionBasedOnMain(circle, mainCircle) {
-    let dx = parseInt(circle.getAttribute('cx')) - parseInt(mainCircle.getAttribute('cx'));
-    let dy = parseInt(circle.getAttribute('cy')) - parseInt(mainCircle.getAttribute('cy'));
+    let dx = parseFloat(circle.getAttribute('cx')) - parseFloat(mainCircle.getAttribute('cx'));
+    let dy = parseFloat(circle.getAttribute('cy')) - parseFloat(mainCircle.getAttribute('cy'));
     let distance = Math.sqrt(dx * dx + dy * dy);
     let angle = Math.atan2(dy, dx);
 
     if (distance > minDist) {
-        // Gradually move the circle closer to the main circle
-        const movementStep = -20; // Adjust this value to control the speed of movement
-        const newX = parseInt(circle.getAttribute('cx')) + Math.cos(angle) * movementStep;
-        const newY = parseInt(circle.getAttribute('cy')) + Math.sin(angle) * movementStep;
-        circle.setAttribute('cx', newX);
-        circle.setAttribute('cy', newY);
+        const movementStep = speed; // Adjusted to 14 decimal places
+        const newX = parseFloat(circle.getAttribute('cx')) + Math.cos(angle) * movementStep;
+        const newY = parseFloat(circle.getAttribute('cy')) + Math.sin(angle) * movementStep;
+        circle.setAttribute('cx', newX.toFixed(14));
+        circle.setAttribute('cy', newY.toFixed(14));
     }
 }
-
 
 function adjustCirclesAmongThemselves() {
     circles.forEach(currentCircle => {
         circles.forEach(otherCircle => {
             if (otherCircle !== currentCircle) {
-                let dx = parseInt(currentCircle.getAttribute('cx')) - parseInt(otherCircle.getAttribute('cx'));
-                let dy = parseInt(currentCircle.getAttribute('cy')) - parseInt(otherCircle.getAttribute('cy'));
+                let dx = parseFloat(currentCircle.getAttribute('cx')) - parseFloat(otherCircle.getAttribute('cx'));
+                let dy = parseFloat(currentCircle.getAttribute('cy')) - parseFloat(otherCircle.getAttribute('cy'));
                 let distance = Math.sqrt(dx * dx + dy * dy);
                 let angle = Math.atan2(dy, dx);
 
                 if (distance < minDist) {
                     const repelDist = minDist - distance;
-                    const newX = parseInt(currentCircle.getAttribute('cx')) + Math.cos(angle) * repelDist;
-                    const newY = parseInt(currentCircle.getAttribute('cy')) + Math.sin(angle) * repelDist;
-                    currentCircle.setAttribute('cx', newX);
-                    currentCircle.setAttribute('cy', newY);
+                    const newX = parseFloat(currentCircle.getAttribute('cx')) + Math.cos(angle) * repelDist;
+                    const newY = parseFloat(currentCircle.getAttribute('cy')) + Math.sin(angle) * repelDist;
+                    currentCircle.setAttribute('cx', newX.toFixed(14));
+                    currentCircle.setAttribute('cy', newY.toFixed(14));
                 }
             }
         });
     });
 }
+
 
 function constrainWithinBounds(circle) {
     let cx = parseInt(circle.getAttribute('cx'));
