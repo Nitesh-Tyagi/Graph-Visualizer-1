@@ -3,6 +3,7 @@ const main = document.getElementById('main');
 const svgWidth = 1200; // SVG width
 const svgHeight = 600; // SVG height
 
+//
 let circles = svg.querySelectorAll('.circle:not(#main)');
 let minDist = 50;
 let mainDist = 60;
